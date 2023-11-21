@@ -101,6 +101,7 @@ const fixedResult = computed(() => {
     return 35
   }
 })
+
 //@ts-ignore
 watch(startVariable, (value, oldValue) => {
   if (startVariable.value < aVariable.value
