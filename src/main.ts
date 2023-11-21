@@ -9,10 +9,8 @@ import routes from "@/router/routes.ts";
 const app = createApp(App)
 const Pinia = createPinia()
 
-const history = createWebHistory('')
-
 const router = createRouter({
-    history,
+    history: createWebHistory('/number_methods_laboratories/'),
     routes,
 }) as Router
 
