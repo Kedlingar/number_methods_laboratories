@@ -4,6 +4,7 @@ import {computed, ref, watch} from "vue";
 
 const powerAccuracy = ref<number>(-1)
 
+//Точность
 const computAccuracy = computed((): number => {
   return 1 / Math.pow(10, Math.abs(powerAccuracy.value))
 })
@@ -17,6 +18,7 @@ function equation(x: number) {
   return (Math.pow(x, 3) + 3 * x + 5)
 }
 
+//Половинное деление
 function findRootUsingBisection(accuracy: number) {
   let localVariableA = aVariable.value // Левая граница интервала
   let localVariableB = bVariable.value // Правая граница интервала
@@ -90,7 +92,7 @@ watch(powerAccuracy, (value) => {
               </div>
               <div class="power">
                 <div>
-                  <input type="number" v-model="powerAccuracy" pattern="-\d+(\.\d+)?"/>
+                  <input type="number" v-model="powerAccuracy" pattern="-\d+(\.\d+)?" class="input-accuracy"/>
                 </div>
               </div>
             </div>
@@ -160,6 +162,11 @@ watch(powerAccuracy, (value) => {
   flex-direction: column
   gap: 10px
 @media (prefers-color-scheme: light)
+.input-accuracy
+  color: white
+@media (prefers-color-scheme: light)
+  .input-accuracy
+    color: black
   :deep(.p-inputtext.p-component.p-inputnumber-input)
     background-color: white
     color: black
