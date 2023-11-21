@@ -10,7 +10,5 @@ export default defineConfig({
     }
   },
   //@ts-ignore
-  base: process.env.NODE_ENV === 'production' || import.meta.env.MODE === 'production'
-      ? '/number_methods_laboratories/'
-      : '/',
+  base: '/number_methods_laboratories/'
 })
