@@ -57,6 +57,14 @@ export const useNumberMethodsFirstLab = defineStore('numberMethodsFirstLab', {
                 this.matrix = []
             }
         },
+        //Заполнение матрицы случайными значениями
+        setRandomValues() {
+            this.matrix.map((matrixRow: IMatrixRow) => {
+                matrixRow.values.map((matrixCell: IMatrixCell) => {
+                    matrixCell.value = Math.floor(Math.random() * 99) + 1
+                })
+            })
+        },
         // Функция для приведения матрицы к ступенчатому виду (метод Гаусса)
         setStepMatrix() {
             const numRows = this.matrix.length;
@@ -97,19 +105,21 @@ export const useNumberMethodsFirstLab = defineStore('numberMethodsFirstLab', {
                 }
             }
         },
+        //Решение обратной подстановкой
         backSubstitution() {
             const numRows = this.matrix.length
             const numCols = this.matrix[0].values.length;
             const solutions = new Array(numRows);
-
+            //проходим по строкам в обратном порядке
             for (let i = numRows - 1; i >= 0; i--) {
                 let sum = 0;
                 for (let j = i + 1; j < numCols - 1; j++) {
+                    //Вычисляем сумму коэффициентов и решения
                     sum += this.matrix[i].values[j].value * solutions[j];
                 }
+                //Ищем решение для текущей строки
                 solutions[i] = (this.matrix[i].values[numCols - 1].value - sum) / this.matrix[i].values[i].value;
             }
-
             this.solutions = solutions;
         },
         updateValueCell(idRow: number, idCell: number, newValue: number) {
@@ -139,6 +149,7 @@ export const useNumberMethodsFirstLab = defineStore('numberMethodsFirstLab', {
         }
     },
     getters: {
+        //Для определения, является ли столбец последним (разрешающим)
         isLastCellOfColumn: (state: IFirstLabStore) => (idCell: IMatrixCell['id'], idRow: IMatrixRow['id']): boolean => {
             let isLastLocal = false
             state.matrix.map((row: IMatrixRow) => {

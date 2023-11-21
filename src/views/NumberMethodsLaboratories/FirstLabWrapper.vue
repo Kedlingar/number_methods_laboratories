@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BasePage from "@/components/BaseComponents/BasePage.vue";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import MatrixMain from "@/components/BaseComponents/Matrix/MatrixMain.vue";
 import {useNumberMethodsFirstLab} from "@/stores/NumberMethodsLaboratories/FirstLab/firstLabStore.ts";
 import {storeToRefs} from "pinia";
@@ -18,6 +18,14 @@ const handleStart = () => {
 const handleResetMatrix = () => {
   firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
 }
+
+const handleSetRandomValues = () => {
+  firstLabStore.setRandomValues()
+}
+
+watch(rowCount, () => {
+  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
+})
 
 onMounted(() => {
   firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
@@ -41,6 +49,7 @@ onMounted(() => {
         <div class="start-process">
           <Button label="Начать решение" @click="handleStart"/>
           <Button label="Сбросить матрицу" @click="handleResetMatrix"/>
+          <Button label="Заполнить случайными значениями" @click="handleSetRandomValues"/>
         </div>
         <div class="first-lab-body-matrix">
           <MatrixMain
