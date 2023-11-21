@@ -12,7 +12,7 @@
             >
               <router-link
                   v-if="menuItem.type=== MenuItemType.Link"
-                  :to="menuItem.to"
+                  :to="{path: `${menuItem.to}`}"
                   class="link"
                   activeClass="active">
                 <div class="title">

@@ -62,4 +62,8 @@ watch(powerAccuracy, () => {
 
       &:hover
         border: 1px solid rgba(145, 145, 145, 0.2)
+        
+@media (prefers-color-scheme: light)
+  input
+    color: black
 </style>

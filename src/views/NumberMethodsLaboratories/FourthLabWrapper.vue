@@ -24,13 +24,13 @@ const answer = ref<IAnswer>()
 /**
  * Первая точка пересечения (стартовая - 1)
  */
-const intersectionX1 = 1.3865
-const intersectionY1 = 0.9223
+// const intersectionX1 = 1.3865
+// const intersectionY1 = 0.9223
 /**
  * Вторая точка пересечения (стартовая - 2)
  */
-const intersectionX2 = 0.4258
-const intersectionY2 = -0.8187
+// const intersectionX2 = 0.4258
+// const intersectionY2 = -0.8187
 
 
 function partialDerivativeX1(f: Function, x1: number, x2: number) {
@@ -293,4 +293,24 @@ function findAnswer() {
   & > div
     display: grid
     grid-template-rows: 1fr 1fr
+    
+@media (prefers-color-scheme: light)
+  :deep(.p-inputtext.p-component.p-inputnumber-input)
+    background-color: white
+    color: black
+  :deep(.p-accordion.p-component)
+    background-color: white
+    color: black
+  :deep(.p-accordion .p-accordion-tab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link)
+    background-color: white
+    color: black
+  :deep(.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link)
+    background-color: white
+    color: black
+  :deep(.p-accordion .p-accordion-tab:last-child .p-accordion-content)
+    background-color: white
+    color: black
+  :deep(.p-accordion .p-accordion-tab:first-child .p-accordion-header .p-accordion-header-link)
+    background-color: white
+    color: black
 </style>

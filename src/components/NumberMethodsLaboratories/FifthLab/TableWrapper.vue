@@ -62,10 +62,10 @@ watch(tableData, (value) => {
   })
 }, {deep: true})
 
-function calculateSum(arr: number[]) {
-  // Используем метод reduce для нахождения суммы
-  return arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-}
+// function calculateSum(arr: number[]) {
+//   // Используем метод reduce для нахождения суммы
+//   return arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+// }
 
 function calculateSumFrom1ToM(arr: number[], m: number) {
   // Используем метод reduce для выполнения суммы
