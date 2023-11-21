@@ -9,12 +9,18 @@ interface ITableColumn {
   y: number,
 }
 
+interface IPairVariable {
+  x: number,
+  y: number,
+}
+
 interface IDataSet {
   id: number,
   label: string,
-  data: number[] | null,
+  data: IPairVariable[] | null,
   fill: boolean,
   borderColor: string,
+  backgroundColor: string,
 }
 
 interface IDataGraph {
@@ -39,6 +45,8 @@ const basicOptions = ref(
       },
       scales: {
         x: {
+          type: 'linear',
+          position: 'bottom',
           ticks: {
             color: '#495057'
           },
@@ -71,13 +79,13 @@ const dataGraph = ref<IDataGraph>({
       //y
       data: [],
       fill: true,
-      borderColor: '#42A5F5',
+      borderColor: '#1a5e93',
+      backgroundColor: '#818585',
     },
   ]
 })
 
 const experimentalDataGraph = ref<IDataGraph>({
-  //x
   labels: [],
   datasets: [
     {
@@ -86,32 +94,10 @@ const experimentalDataGraph = ref<IDataGraph>({
       fill: true,
       data: [],
       borderColor: '#1ab20a',
+      backgroundColor: '#818585',
     }
   ]
 })
-
-/**
- * Тут будет начинаться решение
- */
-
-//region Решение
-/**
- * Выбрал 6 формулу
- * Выравнивание данных (преобразование переменных):
- * X = ln(x)
- * Y = ln(y)
- * Эмпирическая формула:
- * y = ax^β
- * a = e^b
- * β = k
- *
- *
- */
-
-//
-
-//endregion
-
 
 const setExperimentalData = (event: approximatedData[]) => {
   localExperimentalData.value = event
@@ -123,11 +109,13 @@ watch(tableDataValue, (value) => {
     datasets: [],
   }
   let listX: number[] = []
-  let listY: number[] = []
+  let listValues: IPairVariable[] = []
 
   value.map((tableData: ITableColumn) => {
-    listX.push(tableData.x)
-    listY.push(tableData.y)
+    listValues.push({
+      x: tableData.x,
+      y:tableData.y
+    })
   })
   dataGraph.value = {
     labels: listX,
@@ -135,10 +123,10 @@ watch(tableDataValue, (value) => {
       {
         id: 1,
         label: 'Заданные точки',
-        //y
-        data: listY,
+        data: listValues,
         fill: true,
-        borderColor: '#42A5F5',
+        borderColor: '#1a5e93',
+        backgroundColor: '#818585',
       },
     ]
   }
@@ -149,23 +137,24 @@ watch(localExperimentalData, (value) => {
     labels: [],
     datasets: [],
   }
-  let listX: number[] = []
-  let listY: number[] = []
-
+  let listValues: IPairVariable[] = []
   value.map((tableData: approximatedData) => {
-    listX.push(Number(tableData.approximatedValueX.toFixed(4)))
-    listY.push(Number(tableData.approximatedValueY.toFixed(4)))
+    listValues.push(
+        {
+          x: Number(tableData.approximatedValueX.toFixed(4)),
+          y: Number(tableData.approximatedValueY.toFixed(4)),
+        })
   })
   experimentalDataGraph.value = {
-    labels: listX,
+    labels: [],
     datasets: [
       {
         id: 2,
         label: 'Экспериментальные точки',
-        //y
-        data: listY,
+        data: listValues,
         fill: true,
         borderColor: '#1ab20a',
+        backgroundColor: '#818585',
       },
     ]
   }
