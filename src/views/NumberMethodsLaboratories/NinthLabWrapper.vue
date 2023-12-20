@@ -180,10 +180,10 @@ const startSolvingProblem = () => {
         </div>
         <div class="inputs-wrapper" style="display: flex; flex-direction: column; width: max-content; gap: 12px;">
           <div class="input-item" style="display: flex; justify-content: flex-start; align-items: center; width: max-content;">
-            <span>Произвольная точка x0: </span> <InputNumber v-model="arbitraryPoint"/>
+            <span>Произвольная точка x0: </span> <InputNumber v-model="arbitraryPoint" :max-fraction-digits="16"/>
           </div>
           <div class="input-item" style="display: flex; justify-content: flex-start; align-items: center; width: max-content;">
-            <span>Произвольное приращение аргумента x: </span> <InputNumber v-model="mathematicalStep"/>
+            <span>Произвольное приращение аргумента x: </span> <InputNumber v-model="mathematicalStep" :max-fraction-digits="16"/>
           </div>
           <div class="input-item" style="display: flex; justify-content: flex-start; align-items: center; width: max-content;">
             <span>Максимальное количество итераций: </span> <InputNumber v-model="maxIteration"/>
