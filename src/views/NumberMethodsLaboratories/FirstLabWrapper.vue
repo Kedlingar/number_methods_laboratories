@@ -16,7 +16,7 @@ const handleStart = () => {
   firstLabStore.backSubstitution()
 }
 const handleResetMatrix = () => {
-  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
+  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value+1)
 }
 
 const handleSetRandomValues = () => {
@@ -24,11 +24,11 @@ const handleSetRandomValues = () => {
 }
 
 watch(rowCount, () => {
-  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
+  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value+1)
 })
 
 onMounted(() => {
-  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value)
+  firstLabStore.resetMatrixAndSolutions(rowCount.value, rowCount.value+1)
 })
 </script>
 
